@@ -10,6 +10,9 @@
     {{ if .Params.thumbnail }}
     <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.thumbnail }}">
     <meta property="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.thumbnail }}" />
+    {{ else if .Params.image}}
+    <meta property="og:image" content="{{ .Params.image }}">
+    <meta property="twitter:image" content="{{ .Params.image }}" />
     {{ else }}
     <meta property="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.header_image }}">
     <meta property="twitter:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.header_image }}" />
@@ -63,7 +66,7 @@
     <link rel="stylesheet" href="{{ "css/zanshang.css" | relURL }}">
 
     <!-- Custom Fonts -->
-    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.1/css/all.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ "css/font-awesome.all.min.css" | relURL }}">
 
     <!--  Custom CSS  -->
     {{ range .Site.Params.custom_css -}}
@@ -88,4 +91,8 @@
     {{ end }}
 
 </head>
+
+{{ if .Site.GoogleAnalytics }}
+{{ template "_internal/google_analytics.html" . }}
+{{ end }}
 
